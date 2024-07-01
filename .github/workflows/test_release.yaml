@@ -11,6 +11,7 @@ on:
 jobs:
   test_release:
     runs-on: ${{ matrix.os }}
+    timeout-minutes: 30
     strategy:
       matrix:
         os: [ubuntu-latest]

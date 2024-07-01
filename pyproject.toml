@@ -11,6 +11,7 @@ python = "^3.11"
 torch = {version = "^2.3.1+cu118", source = "torch"}
 torchaudio = {version = "^2.3.1+cu118", source = "torch"}
 torchvision = {version = "^0.18.1+cu118", source = "torch"}
+easyocr = "^1.7.1"
 
 
 [tool.poetry.group.formatting.dependencies]
