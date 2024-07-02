@@ -19,7 +19,9 @@ jobs:
 
     steps:
       - uses: actions/checkout@master
-      - uses: chartboost/ruff-action@main
+      - uses: jpetrucciani/mypy-check@master
+        with:
+          mypy_flags: '--strict'
       - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@master
         with:

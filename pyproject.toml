@@ -17,6 +17,7 @@ numpy = "^2.0.0"
 
 [tool.poetry.group.formatting.dependencies]
 pre-commit = "^3.7.1"
+mypy = "^1.10.1"
 
 
 [tool.poetry.group.dev.dependencies]
@@ -35,14 +36,11 @@ priority = "supplemental"
 
 [tool.mypy]
 exclude = [".venv", ".env", "venv", "env", "build", "docs", "dist"]
+plugins = "numpy.typing.mypy_plugin"
 
 
 [[tool.mypy.overrides]]
 module = "easyocr.*"
-ignore_missing_imports = true
-
-[[tool.mypy.overrides]]
-module = "pytest.*"
 ignore_missing_imports = true
 
 
