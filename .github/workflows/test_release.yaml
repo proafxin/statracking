@@ -19,6 +19,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@master
+      - uses: chartboost/ruff-action@main
       - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@master
         with:

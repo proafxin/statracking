@@ -9,7 +9,6 @@ from statracking.parse import parse_image
 cwd = dirname(abspath(__file__))
 
 
-@pytest.mark.asyncio
 async def test_parse() -> None:
     image_path = join(cwd, "1.jpg")
     reader = Reader(lang_list=["en"])
