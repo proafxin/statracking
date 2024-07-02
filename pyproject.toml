@@ -36,7 +36,6 @@ priority = "supplemental"
 
 [tool.mypy]
 exclude = [".venv", ".env", "venv", "env", "build", "docs", "dist"]
-plugins = "numpy.typing.mypy_plugin"
 
 
 [[tool.mypy.overrides]]
