@@ -968,8 +968,8 @@ files = [
 
 [package.dependencies]
 numpy = [
-    {version = ">=1.23.5", markers = "python_version >= \"3.11\" and python_version < \"3.12\""},
     {version = ">=1.26.0", markers = "python_version >= \"3.12\""},
+    {version = ">=1.23.5", markers = "python_version >= \"3.11\" and python_version < \"3.12\""},
 ]
 
 [[package]]
@@ -982,24 +982,6 @@ files = [
     {file = "packaging-24.1-py3-none-any.whl", hash = "sha256:5b8f2217dbdbd2f7f384c41c628544e6d52f2d0f53c6d0c3ea61aa5d1d7ff124"},
     {file = "packaging-24.1.tar.gz", hash = "sha256:026ed72c8ed3fcce5bf8950572258698927fd1dbda10a5e981cdf0ac37f4f002"},
 ]
-
-[[package]]
-name = "pandas-stubs"
-version = "2.2.2.240603"
-description = "Type annotations for pandas"
-optional = false
-python-versions = ">=3.9"
-files = [
-    {file = "pandas_stubs-2.2.2.240603-py3-none-any.whl", hash = "sha256:e08ce7f602a4da2bff5a67475ba881c39f2a4d4f7fccc1cba57c6f35a379c6c0"},
-    {file = "pandas_stubs-2.2.2.240603.tar.gz", hash = "sha256:2dcc86e8fa6ea41535a4561c1f08b3942ba5267b464eff2e99caeee66f9e4cd1"},
-]
-
-[package.dependencies]
-numpy = [
-    {version = ">=1.23.5", markers = "python_version >= \"3.9\" and python_version < \"3.12\""},
-    {version = ">=1.26.0", markers = "python_version >= \"3.12\" and python_version < \"3.13\""},
-]
-types-pytz = ">=2022.1.1"
 
 [[package]]
 name = "pillow"
@@ -1215,8 +1197,8 @@ files = [
 annotated-types = ">=0.4.0"
 pydantic-core = "2.20.0"
 typing-extensions = [
-    {version = ">=4.6.1", markers = "python_version < \"3.13\""},
     {version = ">=4.12.2", markers = "python_version >= \"3.13\""},
+    {version = ">=4.6.1", markers = "python_version < \"3.13\""},
 ]
 
 [package.extras]
@@ -1985,17 +1967,6 @@ tests = ["autopep8", "flake8", "isort", "numpy", "pytest", "scipy (>=1.7.1)", "t
 tutorials = ["matplotlib", "pandas", "tabulate", "torch"]
 
 [[package]]
-name = "types-pytz"
-version = "2024.1.0.20240417"
-description = "Typing stubs for pytz"
-optional = false
-python-versions = ">=3.8"
-files = [
-    {file = "types-pytz-2024.1.0.20240417.tar.gz", hash = "sha256:6810c8a1f68f21fdf0f4f374a432487c77645a0ac0b31de4bf4690cf21ad3981"},
-    {file = "types_pytz-2024.1.0.20240417-py3-none-any.whl", hash = "sha256:8335d443310e2db7b74e007414e74c4f53b67452c0cb0d228ca359ccfba59659"},
-]
-
-[[package]]
 name = "typing-extensions"
 version = "4.12.2"
 description = "Backported and Experimental Type Hints for Python 3.8+"
@@ -2057,4 +2028,4 @@ test = ["covdefaults (>=2.3)", "coverage (>=7.2.7)", "coverage-enable-subprocess
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.11"
-content-hash = "3a8a1bed0071e8e261112c69e67d5210f808e5115c8c30b4591b95f303ababaa"
+content-hash = "e43f9e7437795a53754f80201e9c0f56ba425b874a6d7999e2e1cc7854c4eeb7"
