@@ -1,0 +1,82 @@
+Ping: 37ms
+
+st 4.2 KB/s 57 pkt/s 0% pkt loss
+
+% 3.16 KB/s
+
+87 pkt/s 0% pkt loss
+
+Player Name
+
+[HKT] Pepepper-
+zengyueguang01
+Soberdia
+
+Guhthy
+$3xtonHardcastle
+bot killerbot
+
+[PYKE] Zhuyonhan
+
+51
+
+24
+
+20
+
+20
+
+MATCH RESULTS
+
+DEFEAT
+
+Score
+
+6,530
+
+3,480
+
+2,130
+
+1,810
+
+1,730
+
+1,100
+
+Player Name
+
+[FINN] O-melet
+WxskKABS
+[FINN] S-murf
+Archern_007
+[QTE] NF-Leopard
+ayuel6
+
+syx5556
+
+21iVERSON
+
+REWARD API24
+
+Score
+
+4,920
+
+3,360
+
+3,030
+
+2,910
+
+2,260
+
+1,880
+
+1,870
+
+1,400
+
+REPORT
+
+S3xtonHardcastle -30,1.3.1 -61eBaa
