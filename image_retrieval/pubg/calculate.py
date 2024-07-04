@@ -1,5 +1,5 @@
-from statracking.box import BoundingBox
-from statracking.parse import get_labels
+from image_retrieval.box import BoundingBox
+from image_retrieval.parse import get_labels
 
 
 def filter_single_comma(text: str) -> int | str:

@@ -3,9 +3,9 @@ from os.path import abspath, dirname, join
 import pytest
 from easyocr import Reader
 
-from statracking.box import BoundingBox, Point
-from statracking.parse import get_labels, parse_image
-from statracking.pubg.calculate import get_stats_from_parsed_labels, parse_labels
+from image_retrieval.box import BoundingBox, Point
+from image_retrieval.parse import get_labels, parse_image
+from image_retrieval.pubg.calculate import get_stats_from_parsed_labels, parse_labels
 
 cwd = dirname(abspath(__file__))
 

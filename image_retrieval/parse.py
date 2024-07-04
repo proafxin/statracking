@@ -3,7 +3,7 @@ import os
 import numpy as np
 from easyocr import Reader
 
-from statracking.box import BoundingBox, Point
+from image_retrieval.box import BoundingBox, Point
 
 
 def parse_image(image_path: str, reader: Reader) -> list[BoundingBox]:
