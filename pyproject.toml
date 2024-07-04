@@ -1,0 +1,69 @@
+[tool.poetry]
+name = "statracking"
+version = "0.3.1"
+description = "Tracking stats from scoreboard screenshots"
+authors = ["Masum Billal <billalmasum93@gmail.com>"]
+license = "LICENSE"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+torch = {version = "^2.3.1+cu118", source = "torch"}
+torchaudio = {version = "^2.3.1+cu118", source = "torch"}
+torchvision = {version = "^0.18.1+cu118", source = "torch"}
+easyocr = "^1.7.1"
+numpy = "^2.0.0"
+pydantic = "^2.8.0"
+django-ninja = "^1.2.0"
+
+
+[tool.poetry.group.formatting.dependencies]
+pre-commit = "^3.7.1"
+mypy = "^1.10.1"
+
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.2.2"
+coverage = "^7.5.4"
+pytest-asyncio = "^0.23.7"
+
+
+[tool.poetry.group.docs.dependencies]
+furo = "^2024.5.6"
+sphinx = "^7.3.7"
+
+[[tool.poetry.source]]
+name = "torch"
+url = "https://download.pytorch.org/whl/cu118"
+priority = "supplemental"
+
+
+[tool.ruff]
+line-length = 100
+
+
+[tool.mypy]
+exclude = [".venv", ".env", "venv", "env", "build", "docs", "dist"]
+
+
+[[tool.mypy.overrides]]
+module = "easyocr.*"
+ignore_missing_imports = true
+
+
+[[tool.mypy.overrides]]
+module = "seaborn.*"
+ignore_missing_imports = true
+
+
+[tool.bandit]
+exclude_dirs = [".venv", "venv", "env", ".tox", "docs", "tests"]
+
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
