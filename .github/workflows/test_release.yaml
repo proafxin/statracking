@@ -36,7 +36,7 @@ jobs:
         uses: codecov/codecov-action@v4.0.1
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
-          slug: proafxin/python-template
+          slug: proafxin/stat-tracking
           verbose: true
       - if: ${{ github.event_name == 'push' && matrix.python-version == 3.12 }}
         name: Publish to Pypi
