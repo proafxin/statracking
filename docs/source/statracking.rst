@@ -1,29 +1,45 @@
 statracking package
 ===================
 
-Subpackages
------------
-
-.. toctree::
-   :maxdepth: 4
-
-   statracking.pubg
-
 Submodules
 ----------
 
-statracking.box module
+statracking.api module
 ----------------------
 
-.. automodule:: statracking.box
+.. automodule:: statracking.api
    :members:
    :undoc-members:
    :show-inheritance:
 
-statracking.parse module
-------------------------
+statracking.asgi module
+-----------------------
 
-.. automodule:: statracking.parse
+.. automodule:: statracking.asgi
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+statracking.settings module
+---------------------------
+
+.. automodule:: statracking.settings
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+statracking.urls module
+-----------------------
+
+.. automodule:: statracking.urls
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+statracking.wsgi module
+-----------------------
+
+.. automodule:: statracking.wsgi
    :members:
    :undoc-members:
    :show-inheritance:
