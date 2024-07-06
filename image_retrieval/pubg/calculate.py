@@ -20,8 +20,12 @@ def hasalpha(text: str) -> bool:
     return False
 
 
-def parse_labels(bounding_boxes: list[BoundingBox]) -> list[str | int]:
+def parse_labels(bounding_boxes: list[BoundingBox]) -> tuple[list[str | int], bool]:
     labels = get_labels(bounding_boxes=bounding_boxes)
+    victory = True
+
+    if "DEFEAT" in labels:
+        victory = False
 
     parsed_labels: list[str | int] = []
 
@@ -58,7 +62,7 @@ def parse_labels(bounding_boxes: list[BoundingBox]) -> list[str | int]:
             idx = i
             break
 
-    return parsed_labels[:idx]
+    return parsed_labels[:idx], victory
 
 
 def get_stats_from_parsed_labels(parsed_labels: list[str | int]) -> list[list[str | int]]:

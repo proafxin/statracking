@@ -10,7 +10,7 @@ Subpackages
    backend.migrations
    backend.models
    backend.responses
-   backend.service
+   backend.services
    backend.views
 
 Submodules

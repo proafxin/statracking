@@ -8,6 +8,8 @@ class Stat(Base):
     name = CharField(max_length=100, null=False)
     game = ForeignKey(to=Game, on_delete=CASCADE)
     total_played = IntegerField(default=0)
+    total_won = IntegerField(default=0)
+    total_lost = IntegerField(default=0)
     total_assist = IntegerField(default=0)
     total_death = IntegerField(default=0)
     total_kill = IntegerField(default=0)

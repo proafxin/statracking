@@ -28,10 +28,10 @@ backend.models.records module
    :undoc-members:
    :show-inheritance:
 
-backend.models.statistics module
---------------------------------
+backend.models.stats module
+---------------------------
 
-.. automodule:: backend.models.statistics
+.. automodule:: backend.models.stats
    :members:
    :undoc-members:
    :show-inheritance:

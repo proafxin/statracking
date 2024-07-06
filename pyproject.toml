@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "statracking"
-version = "1.1.1"
+version = "1.2.0"
 description = "Tracking stats from scoreboard screenshots"
 authors = ["Masum Billal <billalmasum93@gmail.com>"]
 license = "LICENSE"
@@ -54,9 +54,6 @@ django_settings_module = "statracking.settings"
 [[tool.mypy.overrides]]
 module = "easyocr.*"
 ignore_missing_imports = true
-
-
-
 
 
 [tool.bandit]

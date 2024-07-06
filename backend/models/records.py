@@ -1,4 +1,4 @@
-from django.db.models import CASCADE, CharField, ForeignKey, Index, IntegerField
+from django.db.models import CASCADE, BooleanField, CharField, ForeignKey, Index, IntegerField
 
 from backend.models.base import Base
 from backend.models.games import Game
@@ -6,6 +6,7 @@ from backend.models.games import Game
 
 class Record(Base):
     game = ForeignKey(to=Game, on_delete=CASCADE)
+    victory = BooleanField()
     name = CharField(max_length=100, null=False)
     kill = IntegerField(default=-1)
     assist = IntegerField(default=-1)

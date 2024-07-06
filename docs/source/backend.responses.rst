@@ -28,6 +28,14 @@ backend.responses.record module
    :undoc-members:
    :show-inheritance:
 
+backend.responses.stats module
+------------------------------
+
+.. automodule:: backend.responses.stats
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 Module contents
 ---------------
 
