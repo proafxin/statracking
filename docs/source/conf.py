@@ -17,6 +17,7 @@ import backend
 
 _ = dir(backend)
 os.environ["DJANGO_SETTINGS_MODULE"] = "statracking.settings"
+os.environ["DJANGO_NINJA_SECRET_KEY"] = "something"
 
 cwd = dirname(abspath(__file__))
 root = join(cwd, "../..")
