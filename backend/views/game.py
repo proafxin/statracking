@@ -19,7 +19,7 @@ def create(request: WSGIRequest, game_request: GameRequest) -> GameResponse:
 
 
 @router.post("/pubg/stats", response=list[RecordResponse])
-def stats_from_image(request: WSGIRequest, file: UploadedFile):
+def stats_from_image(request: WSGIRequest, file: UploadedFile) -> list[RecordResponse]:
     tmpfile = join(settings.MEDIA_ROOT, str(file.name))
     with open(file=tmpfile, mode="wb") as f:
         if not file.file:
