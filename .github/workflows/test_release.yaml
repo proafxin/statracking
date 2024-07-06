@@ -8,6 +8,9 @@ on:
   push:
     branches: [develop]
 
+env:
+  DJANGO_NINJA_SECRET_KEY: ${{ secrets.DJANGO_NINJA_SECRET_KEY }}
+
 jobs:
   test_release:
     runs-on: ${{ matrix.os }}
@@ -31,17 +34,11 @@ jobs:
         run: |
           curl -sSL https://install.python-poetry.org | python3 -
           tox
-      - if: ${{ github.event_name == 'push' && matrix.python-version == 3.12 }}
+
+      - if: ${{ matrix.python-version == 3.12 }}
         name: Upload coverage reports to Codecov
         uses: codecov/codecov-action@v4.0.1
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           slug: proafxin/stat-tracking
           verbose: true
-      - if: ${{ github.event_name == 'push' && matrix.python-version == 3.12 }}
-        name: Publish to Pypi
-        run: |
-          curl -sSL https://install.python-poetry.org | python3 -
-          poetry config pypi-token.pypi ${{ secrets.PYPI_TOKEN }}
-          poetry build
-          poetry publish

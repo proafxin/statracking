@@ -6,14 +6,25 @@
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
+import os
 import sys
-import tomllib
 from os.path import abspath, dirname, join
+
+import django
+import tomllib
+
+import backend
+
+_ = dir(backend)
+os.environ["DJANGO_SETTINGS_MODULE"] = "statracking.settings"
+os.environ["DJANGO_NINJA_SECRET_KEY"] = "something"
 
 cwd = dirname(abspath(__file__))
 root = join(cwd, "../..")
 
 sys.path.insert(0, root)
+django.setup()
+
 
 toml_file = join(root, "pyproject.toml")
 
@@ -38,7 +49,7 @@ author = "Masum Billal"
 extensions = ["sphinx.ext.autodoc", "sphinx.ext.viewcode"]
 
 templates_path = ["_templates"]
-exclude_patterns: list[str] = []
+exclude_patterns = ["_build", "Thumbs.db", ".DS_Store", "LICENSE", ".tox", "*env/", ".venv"]
 
 
 # -- Options for HTML output -------------------------------------------------

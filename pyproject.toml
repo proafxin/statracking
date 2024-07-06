@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "statracking"
-version = "0.3.1"
+version = "1.0.0"
 description = "Tracking stats from scoreboard screenshots"
 authors = ["Masum Billal <billalmasum93@gmail.com>"]
 license = "LICENSE"
@@ -12,9 +12,10 @@ torch = {version = "^2.3.1+cu118", source = "torch"}
 torchaudio = {version = "^2.3.1+cu118", source = "torch"}
 torchvision = {version = "^0.18.1+cu118", source = "torch"}
 easyocr = "^1.7.1"
-numpy = "^2.0.0"
 pydantic = "^2.8.0"
 django-ninja = "^1.2.0"
+django-stubs = "^5.0.2"
+uvicorn = "^0.30.1"
 
 
 [tool.poetry.group.formatting.dependencies]
@@ -44,6 +45,10 @@ line-length = 100
 
 [tool.mypy]
 exclude = [".venv", ".env", "venv", "env", "build", "docs", "dist"]
+plugins = ["mypy_django_plugin.main"]
+
+[tool.django-stubs]
+django_settings_module = "statracking.settings"
 
 
 [[tool.mypy.overrides]]
@@ -51,9 +56,7 @@ module = "easyocr.*"
 ignore_missing_imports = true
 
 
-[[tool.mypy.overrides]]
-module = "seaborn.*"
-ignore_missing_imports = true
+
 
 
 [tool.bandit]

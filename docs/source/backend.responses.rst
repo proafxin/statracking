@@ -1,0 +1,37 @@
+backend.responses package
+=========================
+
+Submodules
+----------
+
+backend.responses.base module
+-----------------------------
+
+.. automodule:: backend.responses.base
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+backend.responses.game module
+-----------------------------
+
+.. automodule:: backend.responses.game
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+backend.responses.record module
+-------------------------------
+
+.. automodule:: backend.responses.record
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: backend.responses
+   :members:
+   :undoc-members:
+   :show-inheritance:
