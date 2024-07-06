@@ -4,18 +4,18 @@ backend.service package
 Submodules
 ----------
 
-backend.service.game module
----------------------------
+backend.service.games module
+----------------------------
 
-.. automodule:: backend.service.game
+.. automodule:: backend.service.games
    :members:
    :undoc-members:
    :show-inheritance:
 
-backend.service.record module
------------------------------
+backend.service.records module
+------------------------------
 
-.. automodule:: backend.service.record
+.. automodule:: backend.service.records
    :members:
    :undoc-members:
    :show-inheritance:

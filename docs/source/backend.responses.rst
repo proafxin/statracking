@@ -12,10 +12,10 @@ backend.responses.base module
    :undoc-members:
    :show-inheritance:
 
-backend.responses.game module
------------------------------
+backend.responses.games module
+------------------------------
 
-.. automodule:: backend.responses.game
+.. automodule:: backend.responses.games
    :members:
    :undoc-members:
    :show-inheritance:

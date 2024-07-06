@@ -4,10 +4,10 @@ backend.views package
 Submodules
 ----------
 
-backend.views.game module
--------------------------
+backend.views.games module
+--------------------------
 
-.. automodule:: backend.views.game
+.. automodule:: backend.views.games
    :members:
    :undoc-members:
    :show-inheritance:

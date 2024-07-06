@@ -12,18 +12,26 @@ backend.models.base module
    :undoc-members:
    :show-inheritance:
 
-backend.models.game module
---------------------------
+backend.models.games module
+---------------------------
 
-.. automodule:: backend.models.game
+.. automodule:: backend.models.games
    :members:
    :undoc-members:
    :show-inheritance:
 
-backend.models.record module
-----------------------------
+backend.models.records module
+-----------------------------
 
-.. automodule:: backend.models.record
+.. automodule:: backend.models.records
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+backend.models.statistics module
+--------------------------------
+
+.. automodule:: backend.models.statistics
    :members:
    :undoc-members:
    :show-inheritance:

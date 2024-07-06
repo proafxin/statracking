@@ -1,4 +1,4 @@
-from backend.models.record import Record
+from backend.models.records import Record
 from backend.responses.record import RecordRequest
 
 
