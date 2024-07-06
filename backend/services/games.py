@@ -3,7 +3,9 @@ from easyocr import Reader
 from backend.models.games import Game
 from backend.responses.games import GameRequest, GameResponse
 from backend.responses.record import RecordRequest, RecordResponse
-from backend.service.records import create_new as create_new_record
+from backend.services.records import create_new as create_new_record
+from backend.services.stats import create_new as create_new_stat
+from backend.services.stats import create_request, get_by_name_game, update_request
 from image_retrieval.parse import parse_image
 from image_retrieval.pubg.calculate import get_stats_from_parsed_labels, parse_labels
 
@@ -52,5 +54,12 @@ def get_pubg_stats_from_image(image_path: str) -> list[RecordResponse]:
         )
         record = create_new_record(record_request=record_request)
         response.append(RecordResponse(**record.__dict__))
+        stat_request = create_request(record=record)
+        old = get_by_name_game(name=record.name, game_id=record.game.id)
+        if not old:
+            _ = create_new_stat(stat_request=stat_request)
+        else:
+            new_request = update_request(old=old, current=stat_request)
+            _ = create_new_stat(stat_request=new_request)
 
     return response

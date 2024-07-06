@@ -13,4 +13,9 @@ class Record(Base):
     point = IntegerField(default=-1)
 
     class Meta:
-        indexes = [Index(fields=["game", "name", "created_at", "updated_at"])]
+        indexes = [
+            Index(fields=["name"]),
+            Index(fields=["name", "game_id"]),
+            Index(fields=["created_at"]),
+            Index(fields=["updated_at"]),
+        ]

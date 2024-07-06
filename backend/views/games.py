@@ -7,7 +7,7 @@ from ninja.files import UploadedFile
 
 from backend.responses.games import GameRequest, GameResponse
 from backend.responses.record import RecordResponse
-from backend.service.games import create_new, get_pubg_stats_from_image
+from backend.services.games import create_new, get_pubg_stats_from_image
 
 router = Router()
 
