@@ -28,7 +28,9 @@ async def test_parse() -> None:
     for label in labels:
         assert isinstance(label, str)
 
-    parsed_labels = parse_labels(bounding_boxes=bounding_boxes)
+    parsed_labels, victory = parse_labels(bounding_boxes=bounding_boxes)
+
+    assert isinstance(victory, bool)
 
     assert isinstance(parsed_labels, list)
     for stat in parsed_labels:

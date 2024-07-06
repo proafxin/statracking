@@ -44,6 +44,22 @@ backend.migrations.0005\_remove\_game\_backend\_gam\_name\_2bfe89\_idx\_and\_mor
    :undoc-members:
    :show-inheritance:
 
+backend.migrations.0006\_stat\_remove\_game\_backend\_gam\_name\_d2bf4e\_idx\_and\_more module
+----------------------------------------------------------------------------------------------
+
+.. automodule:: backend.migrations.0006_stat_remove_game_backend_gam_name_d2bf4e_idx_and_more
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+backend.migrations.0007\_record\_victory\_stat\_total\_lost\_stat\_total\_won module
+------------------------------------------------------------------------------------
+
+.. automodule:: backend.migrations.0007_record_victory_stat_total_lost_stat_total_won
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 Module contents
 ---------------
 

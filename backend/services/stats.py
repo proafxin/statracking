@@ -12,6 +12,8 @@ def create_request(record: Record) -> StatRequest:
     valid_death_match = 0
     valid_kill_match = 0
     valid_point_match = 0
+    total_lost = 0
+    total_won = 0
 
     if record.assist >= 0:
         assist = record.assist
@@ -29,10 +31,17 @@ def create_request(record: Record) -> StatRequest:
         point = record.point
         valid_point_match = 1
 
+    if record.victory:
+        total_won = 1
+    else:
+        total_lost = 1
+
     statistic = StatRequest(
         name=record.name,
         game_id=record.game.id,
         total_played=1,
+        total_lost=total_lost,
+        total_won=total_won,
         total_assist=assist,
         total_death=death,
         total_kill=kill,
@@ -59,6 +68,8 @@ def update_request(old: Stat, current: StatRequest) -> StatRequest:
     new = StatRequest(
         name=old.name,
         game_id=old.game.id,
+        total_lost=old.total_lost + current.total_lost,
+        total_won=old.total_won + current.total_won,
         total_assist=old.total_assist + current.total_assist,
         total_death=old.total_death + current.total_death,
         total_kill=old.total_kill + current.total_kill,

@@ -3,6 +3,7 @@ from backend.responses.base import BaseRequest, BaseResponse
 
 class RecordRequest(BaseRequest):
     game_id: int
+    victory: bool
     name: str
     kill: int = -1
     assist: int = -1
