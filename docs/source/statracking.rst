@@ -4,14 +4,6 @@ statracking package
 Submodules
 ----------
 
-statracking.api module
-----------------------
-
-.. automodule:: statracking.api
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
 statracking.asgi module
 -----------------------
 

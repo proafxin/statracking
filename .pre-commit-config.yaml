@@ -21,3 +21,4 @@ repos:
   hooks:
   - id: bandit
     args: ["-c", "pyproject.toml"]
+exclude: 'backend/migrations/.*|docs/*'

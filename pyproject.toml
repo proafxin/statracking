@@ -45,6 +45,10 @@ line-length = 100
 
 [tool.mypy]
 exclude = [".venv", ".env", "venv", "env", "build", "docs", "dist"]
+plugins = ["mypy_django_plugin.main"]
+
+[tool.django-stubs]
+django_settings_module = "statracking.settings"
 
 
 [[tool.mypy.overrides]]
@@ -52,9 +56,7 @@ module = "easyocr.*"
 ignore_missing_imports = true
 
 
-[[tool.mypy.overrides]]
-module = "seaborn.*"
-ignore_missing_imports = true
+
 
 
 [tool.bandit]

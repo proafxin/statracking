@@ -5,9 +5,9 @@ from backend.models.game import Game
 
 
 class Record(Base):
-    game: ForeignKey = ForeignKey(to=Game, on_delete=CASCADE)
-    name: CharField = CharField(max_length=100, null=False)
-    kill: IntegerField = IntegerField(default=-1)
-    assist: IntegerField = IntegerField(default=-1)
-    death: IntegerField = IntegerField(default=-1)
-    point: IntegerField = IntegerField(default=-1)
+    game = ForeignKey(to=Game, on_delete=CASCADE)
+    name = CharField(max_length=100, null=False)
+    kill = IntegerField(default=-1)
+    assist = IntegerField(default=-1)
+    death = IntegerField(default=-1)
+    point = IntegerField(default=-1)
