@@ -1,9 +1,9 @@
 from easyocr import Reader
 
-from backend.models.game import Game
-from backend.responses.game import GameRequest, GameResponse
+from backend.models.games import Game
+from backend.responses.games import GameRequest, GameResponse
 from backend.responses.record import RecordRequest, RecordResponse
-from backend.service.record import create_new as create_new_record
+from backend.service.records import create_new as create_new_record
 from image_retrieval.parse import parse_image
 from image_retrieval.pubg.calculate import get_stats_from_parsed_labels, parse_labels
 

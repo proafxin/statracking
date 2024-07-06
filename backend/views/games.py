@@ -5,9 +5,9 @@ from django.core.handlers.wsgi import WSGIRequest
 from ninja import Router
 from ninja.files import UploadedFile
 
-from backend.responses.game import GameRequest, GameResponse
+from backend.responses.games import GameRequest, GameResponse
 from backend.responses.record import RecordResponse
-from backend.service.game import create_new, get_pubg_stats_from_image
+from backend.service.games import create_new, get_pubg_stats_from_image
 
 router = Router()
 
