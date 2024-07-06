@@ -5,9 +5,14 @@ permissions: read-all
 on:
   pull_request:
     branches: [develop]
+    paths-ignore:
+      - '**/**.md'
+      - '**/**.rst'
   push:
     branches: [develop]
-
+    paths-ignore:
+      - '**/**.md'
+      - '**/**.rst'
 env:
   DJANGO_NINJA_SECRET_KEY: ${{ secrets.DJANGO_NINJA_SECRET_KEY }}
 

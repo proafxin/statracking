@@ -165,3 +165,5 @@ Only use it in linux systems with GPU support for [pytorch](https://pytorch.org/
   }
 ]
 ```
+
+* To see the changes reflected in the database: install [DB browser for SQLITE](https://sqlitebrowser.org/) and open the file `db.sqlite3` from root directory.
