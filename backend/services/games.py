@@ -1,4 +1,5 @@
 from easyocr import Reader
+from ninja.errors import ValidationError
 
 from backend.models.games import Game
 from backend.responses.games import GameRequest, GameResponse
@@ -40,6 +41,9 @@ def get_pubg_stats_from_image(image_path: str) -> list[RecordResponse]:
     parsed_labels = parse_labels(bounding_boxes=bounding_boxes)
     stats = get_stats_from_parsed_labels(parsed_labels=parsed_labels)
     game_obj = get_by_name(name="PUBG")
+    if not game_obj:
+        raise ValidationError(errors=[{"error": "PUBG is not a valid game. Create it first."}])
+
     game = GameResponse(**game_obj.__dict__)
 
     response: list[RecordResponse] = []

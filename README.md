@@ -11,6 +11,7 @@ Only use it in linux systems with GPU support for [pytorch](https://pytorch.org/
 
 * Install poetry: `curl -sSL https://install.python-poetry.org | python3 -`
 * Install tox: `python3 -m pip install -U tox`
+* Run migrations: `python manage.py makemigrations` and `python manage.py migrate`
 * Run the server: `tox -e runserver`
 * Go to API docs: <http://127.0.0.1:8000/docs>
 * Use the endpoint: `/game/pubg/stats`
