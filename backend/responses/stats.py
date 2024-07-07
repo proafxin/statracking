@@ -1,9 +1,12 @@
+from datetime import date
+
 from backend.responses.base import BaseRequest, BaseResponse
 
 
 class StatRequest(BaseRequest):
     name: str
     game_id: int
+    date: date
     total_played: int = 0
     total_won: int = 0
     total_lost: int = 0

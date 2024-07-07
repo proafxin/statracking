@@ -1,4 +1,12 @@
-from django.db.models import CASCADE, CharField, ForeignKey, Index, IntegerField, Manager
+from django.db.models import (
+    CASCADE,
+    CharField,
+    DateField,
+    ForeignKey,
+    Index,
+    IntegerField,
+    Manager,
+)
 
 from backend.models.base import Base
 from backend.models.games import Game
@@ -7,6 +15,7 @@ from backend.models.games import Game
 class Stat(Base):
     name = CharField(max_length=100, null=False)
     game = ForeignKey(to=Game, on_delete=CASCADE)
+    date = DateField()
     total_played = IntegerField(default=0)
     total_won = IntegerField(default=0)
     total_lost = IntegerField(default=0)
@@ -22,6 +31,7 @@ class Stat(Base):
     class Meta:
         indexes = [
             Index(fields=["name"]),
+            Index(fields=["date"]),
             Index(fields=["name", "game_id"]),
             Index(fields=["created_at"]),
             Index(fields=["updated_at"]),

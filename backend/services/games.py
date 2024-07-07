@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from easyocr import Reader
 from ninja.errors import ValidationError
 
@@ -36,7 +38,7 @@ def get_by_name(name: str) -> Game | None:
         return None
 
 
-def get_pubg_stats_from_image(image_path: str) -> list[RecordResponse]:
+def get_pubg_stats_from_image(image_path: str, match_date: datetime) -> list[RecordResponse]:
     bounding_boxes = parse_image(image_path=image_path, reader=Reader(lang_list=["en"]))
     parsed_labels, victory = parse_labels(bounding_boxes=bounding_boxes)
     stats = get_stats_from_parsed_labels(parsed_labels=parsed_labels)
@@ -51,6 +53,7 @@ def get_pubg_stats_from_image(image_path: str) -> list[RecordResponse]:
         record_request = RecordRequest(
             game_id=game.id,
             victory=victory,
+            date=match_date,
             name=str(stat[0]),
             kill=int(stat[1]),
             assist=int(stat[2]),

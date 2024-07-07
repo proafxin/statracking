@@ -35,10 +35,12 @@ def create_request(record: Record) -> StatRequest:
         total_won = 1
     else:
         total_lost = 1
+    date = record.date
 
     statistic = StatRequest(
         name=record.name,
         game_id=record.game.id,
+        date=date,
         total_played=1,
         total_lost=total_lost,
         total_won=total_won,
@@ -68,6 +70,7 @@ def update_request(old: Stat, current: StatRequest) -> StatRequest:
     new = StatRequest(
         name=old.name,
         game_id=old.game.id,
+        date=current.date,
         total_lost=old.total_lost + current.total_lost,
         total_won=old.total_won + current.total_won,
         total_assist=old.total_assist + current.total_assist,

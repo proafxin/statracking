@@ -1,3 +1,4 @@
+from datetime import datetime
 from os.path import join
 
 from django.conf import settings
@@ -19,7 +20,9 @@ def create(request: WSGIRequest, game_request: GameRequest) -> GameResponse:
 
 
 @router.post("/pubg/stats", response=list[RecordResponse])
-def stats_from_image(request: WSGIRequest, file: UploadedFile) -> list[RecordResponse]:
+def stats_from_image(
+    request: WSGIRequest, date: datetime, file: UploadedFile
+) -> list[RecordResponse]:
     tmpfile = join(settings.MEDIA_ROOT, str(file.name))
     with open(file=tmpfile, mode="wb") as f:
         if not file.file:
@@ -27,4 +30,4 @@ def stats_from_image(request: WSGIRequest, file: UploadedFile) -> list[RecordRes
 
         f.write(file.file.read())
 
-    return get_pubg_stats_from_image(image_path=tmpfile)
+    return get_pubg_stats_from_image(image_path=tmpfile, match_date=date)
