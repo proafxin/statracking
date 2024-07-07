@@ -59,7 +59,7 @@ def create_request(record: Record) -> StatRequest:
 
 def get_by_name_game(name: str, game_id: int) -> Stat | None:
     try:
-        stat = Stat.objects.get(name=name, game_id=game_id)
+        stat = Stat.objects.filter(name=name, game_id=game_id).latest("date")
 
         return stat
     except Stat.DoesNotExist:

@@ -6,6 +6,7 @@ from ninja.errors import ValidationError
 from backend.models.games import Game
 from backend.responses.games import GameRequest, GameResponse
 from backend.responses.record import RecordRequest, RecordResponse
+from backend.responses.stats import StatRequest
 from backend.services.records import create_new as create_new_record
 from backend.services.stats import create_new as create_new_stat
 from backend.services.stats import create_request, get_by_name_game, update_request
@@ -39,12 +40,13 @@ def get_by_name(name: str) -> Game | None:
 
 
 def get_pubg_stats_from_image(image_path: str, match_date: datetime) -> list[RecordResponse]:
-    bounding_boxes = parse_image(image_path=image_path, reader=Reader(lang_list=["en"]))
-    parsed_labels, victory = parse_labels(bounding_boxes=bounding_boxes)
-    stats = get_stats_from_parsed_labels(parsed_labels=parsed_labels)
     game_obj = get_by_name(name="PUBG")
     if not game_obj:
         raise ValidationError(errors=[{"error": "PUBG is not a valid game. Create it first."}])
+
+    bounding_boxes = parse_image(image_path=image_path, reader=Reader(lang_list=["en"]))
+    parsed_labels, victory = parse_labels(bounding_boxes=bounding_boxes)
+    stats = get_stats_from_parsed_labels(parsed_labels=parsed_labels)
 
     game = GameResponse(**game_obj.__dict__)
 
@@ -67,6 +69,8 @@ def get_pubg_stats_from_image(image_path: str, match_date: datetime) -> list[Rec
         if not old:
             _ = create_new_stat(stat_request=stat_request)
         else:
+            print(stat_request)
+            print(StatRequest(**old.__dict__))
             new_request = update_request(old=old, current=stat_request)
             _ = create_new_stat(stat_request=new_request)
 
