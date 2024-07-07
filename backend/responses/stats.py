@@ -1,7 +1,9 @@
+from datetime import date
+
 from backend.responses.base import BaseRequest, BaseResponse
 
 
-class StatRequest(BaseRequest):
+class LatestPerformance(BaseRequest):
     name: str
     game_id: int
     total_played: int = 0
@@ -15,6 +17,14 @@ class StatRequest(BaseRequest):
     valid_death_match: int = 0
     valid_kill_match: int = 0
     valid_point_match: int = 0
+
+
+class LatestPerformanceResponse(BaseResponse, LatestPerformance):
+    pass
+
+
+class StatRequest(LatestPerformance):
+    date: date
 
 
 class StatResponse(BaseResponse, StatRequest):

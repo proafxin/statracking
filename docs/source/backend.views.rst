@@ -12,6 +12,14 @@ backend.views.games module
    :undoc-members:
    :show-inheritance:
 
+backend.views.stats module
+--------------------------
+
+.. automodule:: backend.views.stats
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 Module contents
 ---------------
 
