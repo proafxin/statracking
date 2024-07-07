@@ -1,6 +1,6 @@
 from backend.models.records import Record
 from backend.models.stats import Stat
-from backend.responses.stats import StatRequest
+from backend.responses.stats import LatestPerformanceResponse, StatRequest
 
 
 def create_request(record: Record) -> StatRequest:
@@ -93,3 +93,35 @@ def create_new(stat_request: StatRequest) -> Stat:
     stat.refresh_from_db()
 
     return stat
+
+
+def difference(old: Stat, new: Stat) -> LatestPerformanceResponse:
+    result = LatestPerformanceResponse(
+        name=new.name,
+        game_id=new.game.id,
+        total_assist=abs(new.total_assist - old.total_assist),
+        total_death=abs(new.total_death - old.total_death),
+        total_kill=abs(new.total_kill - old.total_kill),
+        total_lost=abs(new.total_lost - old.total_lost),
+        total_played=abs(new.total_played - old.total_played),
+        total_point=abs(new.total_point - old.total_point),
+        total_won=abs(new.total_won - old.total_won),
+        valid_assist_match=abs(new.valid_assist_match - old.valid_assist_match),
+        valid_death_match=abs(new.valid_death_match - old.valid_death_match),
+        valid_kill_match=abs(new.valid_kill_match - old.valid_kill_match),
+        valid_point_match=abs(new.valid_point_match - old.valid_point_match),
+        created_at=new.created_at,
+        updated_at=new.updated_at,
+    )
+
+    return result
+
+
+def get_latest_performance(name: str, game: str) -> LatestPerformanceResponse:
+    latest = Stat.objects.filter(name=name).latest("date")
+    next_latest = Stat.objects.filter(name=name, date__lt=latest.date).order_by("date").first()
+
+    if not next_latest:
+        return LatestPerformanceResponse(**latest.__dict__.pop("date"))
+
+    return LatestPerformanceResponse(**difference(old=next_latest, new=latest).model_dump())
