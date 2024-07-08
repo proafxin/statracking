@@ -8,7 +8,11 @@ from ninja.files import UploadedFile
 
 from backend.responses.record import RecordResponse
 from backend.responses.stats import LatestPerformanceResponse
-from backend.services.stats import get_latest_performance, get_pubg_stats_from_image
+from backend.services.stats import (
+    get_latest_performance,
+    get_pubg_stats_from_image,
+    get_stats_from_dir,
+)
 
 router = Router()
 
@@ -25,6 +29,11 @@ def stats_from_image(
         f.write(file.file.read())
 
     return get_pubg_stats_from_image(image_path=tmpfile, match_date=date)
+
+
+@router.post("/pubg/batch", response=list[str])
+def stats_from_image_dir(request: WSGIRequest, date: datetime, image_dir: str) -> list[str]:
+    return get_stats_from_dir(image_dir=image_dir, match_date=date)
 
 
 @router.post("/pubg/latest/individual", response=LatestPerformanceResponse)

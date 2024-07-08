@@ -1,4 +1,6 @@
 from datetime import datetime
+from os import listdir
+from os.path import join, splitext
 
 from easyocr import Reader
 from ninja.errors import ValidationError
@@ -178,3 +180,19 @@ def get_latest_performance(name: str, game: str) -> LatestPerformanceResponse:
         data = latest.__dict__
         data.pop("date")
         return LatestPerformanceResponse(**data)
+
+
+def get_stats_from_dir(image_dir: str, match_date: datetime) -> list[str]:
+    image_paths: list[str] = []
+    for file in listdir(path=image_dir):
+        filename, ext = splitext(file)
+        if ext in [".png", ".jpg", ".jpeg"]:
+            image_path = join(image_dir, file)
+            image_paths.append(image_path)
+
+    parsed_images: list[str] = []
+    for image_path in image_paths:
+        _ = get_pubg_stats_from_image(image_path=image_path, match_date=match_date)
+        parsed_images.append(image_path)
+
+    return parsed_images
