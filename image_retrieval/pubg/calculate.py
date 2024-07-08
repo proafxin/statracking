@@ -20,6 +20,19 @@ def hasalpha(text: str) -> bool:
     return False
 
 
+def is_end(token: str) -> bool:
+    stop_words = ["REWARD", "EXIT", "-", "TO", "LOBBY", "PING", "PLAYER"]
+
+    if token in stop_words:
+        return True
+    if "NEXT" in token:
+        return True
+    if token.count(".") > 2:
+        return True
+
+    return False
+
+
 def parse_labels(bounding_boxes: list[BoundingBox]) -> tuple[list[str | int], bool]:
     labels = get_labels(bounding_boxes=bounding_boxes)
     victory = True
@@ -56,9 +69,10 @@ def parse_labels(bounding_boxes: list[BoundingBox]) -> tuple[list[str | int], bo
                 break
     parsed_labels = parsed_labels[idx + 1 :]
 
-    idx = 0
+    idx = -1
+
     for i, label in enumerate[str | int](parsed_labels):  # type: ignore[assignment]
-        if isinstance(label, str) and label == "REWARD":
+        if isinstance(label, str) and is_end(token=label):
             idx = i
             break
 

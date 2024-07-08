@@ -1,13 +1,13 @@
 [tool.poetry]
 name = "statracking"
-version = "1.4.0"
+version = "1.4.2"
 description = "Tracking stats from scoreboard screenshots"
 authors = ["Masum Billal <billalmasum93@gmail.com>"]
 license = "LICENSE"
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "^3.11"
+python = "^3.10"
 torch = {version = "^2.3.1+cu118", source = "torch"}
 torchaudio = {version = "^2.3.1+cu118", source = "torch"}
 torchvision = {version = "^0.18.1+cu118", source = "torch"}
@@ -16,6 +16,7 @@ pydantic = "^2.8.0"
 django-ninja = "^1.2.0"
 django-stubs = "^5.0.2"
 uvicorn = "^0.30.1"
+gunicorn = "^22.0.0"
 
 
 [tool.poetry.group.formatting.dependencies]
