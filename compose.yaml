@@ -12,6 +12,7 @@ services:
       - 8000:8000
     expose:
       - 8000
+    network_mode: host
     healthcheck:
       test: curl --fail http://localhost:8000/health || exit 1
       interval: 1m30s

@@ -12,4 +12,4 @@ WORKDIR /app
 COPY . .
 RUN poetry config virtualenvs.in-project true && poetry install
 # CMD [ "/bin/bash" ]
-CMD poetry run uvicorn statracking.asgi:application -w 4
+CMD poetry run uvicorn statracking.asgi:application
