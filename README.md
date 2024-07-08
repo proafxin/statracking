@@ -3,7 +3,15 @@
 [![Build, test with Tox and publish to Pypi](https://github.com/proafxin/statracking/actions/workflows/test_release.yaml/badge.svg)](https://github.com/proafxin/statracking/actions/workflows/test_release.yaml)
 [![pre-commit.ci status](https://results.pre-commit.ci/badge/github/proafxin/statracking/develop.svg)](https://results.pre-commit.ci/latest/github/proafxin/statracking/develop)
 
-Extract stats from scoreboard screenshots.
+Extract stats from scoreboard screenshots. Take screenshots after the game is over and use it to extract scores.
+
+Currently supported games:
+
+* PUBG TDM arcade mode
+
+## TDM
+
+After all the rounds are over, when the final results are shown, take a screenshot. The system works best for higher quality screenshots. Optimal resolution for most accurate results is 4k.
 
 ## How to use locally
 

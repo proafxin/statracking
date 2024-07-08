@@ -11,5 +11,5 @@ RUN echo "export LD_LIBRARY_PATH=/usr/local/cuda/lib64:$LD_LIBRARY_PATH" > ~/.ba
 WORKDIR /app
 COPY . .
 RUN poetry config virtualenvs.in-project true && poetry install
-# CMD [ "/bin/bash" ]
-CMD poetry run uvicorn statracking.asgi:application
+
+CMD poetry run gunicorn statracking.asgi:application -k uvicorn.workers.UvicornWorker -w 4

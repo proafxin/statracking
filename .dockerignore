@@ -18,6 +18,10 @@
 .pytest_cache/
 .ruff_cache/
 .tox/
+.venv/
+.env/
+env/
+venv/
 __pycache__
 dist
 docs
