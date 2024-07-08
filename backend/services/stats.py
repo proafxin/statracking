@@ -1,6 +1,17 @@
+from datetime import datetime
+
+from easyocr import Reader
+from ninja.errors import ValidationError
+
 from backend.models.records import Record
 from backend.models.stats import Stat
+from backend.responses.games import GameResponse
+from backend.responses.record import RecordRequest, RecordResponse
 from backend.responses.stats import LatestPerformanceResponse, StatRequest
+from backend.services.games import get_by_name
+from backend.services.records import create_new as create_new_record
+from image_retrieval.parse import parse_image
+from image_retrieval.pubg.calculate import get_stats_from_parsed_labels, parse_labels
 
 
 def create_request(record: Record) -> StatRequest:
@@ -93,6 +104,42 @@ def create_new(stat_request: StatRequest) -> Stat:
     stat.refresh_from_db()
 
     return stat
+
+
+def get_pubg_stats_from_image(image_path: str, match_date: datetime) -> list[RecordResponse]:
+    game_obj = get_by_name(name="PUBG")
+    if not game_obj:
+        raise ValidationError(errors=[{"error": "PUBG is not a valid game. Create it first."}])
+
+    bounding_boxes = parse_image(image_path=image_path, reader=Reader(lang_list=["en"]))
+    parsed_labels, victory = parse_labels(bounding_boxes=bounding_boxes)
+    stats = get_stats_from_parsed_labels(parsed_labels=parsed_labels)
+
+    game = GameResponse(**game_obj.__dict__)
+
+    response: list[RecordResponse] = []
+    for stat in stats:
+        record_request = RecordRequest(
+            game_id=game.id,
+            victory=victory,
+            date=match_date,
+            name=str(stat[0]),
+            kill=int(stat[1]),
+            assist=int(stat[2]),
+            death=int(stat[3]),
+            point=int(stat[4]),
+        )
+        record = create_new_record(record_request=record_request)
+        response.append(RecordResponse(**record.__dict__))
+        stat_request = create_request(record=record)
+        old = get_by_name_game(name=record.name, game_id=record.game.id)
+        if not old:
+            _ = create_new(stat_request=stat_request)
+        else:
+            new_request = update_request(old=old, current=stat_request)
+            _ = create_new(stat_request=new_request)
+
+    return response
 
 
 def difference(old: Stat, new: Stat) -> LatestPerformanceResponse:

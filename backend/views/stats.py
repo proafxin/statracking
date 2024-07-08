@@ -8,8 +8,7 @@ from ninja.files import UploadedFile
 
 from backend.responses.record import RecordResponse
 from backend.responses.stats import LatestPerformanceResponse
-from backend.services.games import get_pubg_stats_from_image
-from backend.services.stats import get_latest_performance
+from backend.services.stats import get_latest_performance, get_pubg_stats_from_image
 
 router = Router()
 
