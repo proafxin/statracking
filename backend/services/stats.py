@@ -165,10 +165,16 @@ def difference(old: Stat, new: Stat) -> LatestPerformanceResponse:
 
 
 def get_latest_performance(name: str, game: str) -> LatestPerformanceResponse:
-    latest = Stat.objects.filter(name=name).latest("date")
-    next_latest = Stat.objects.filter(name=name, date__lt=latest.date).order_by("date").first()
+    latest = Stat.objects.filter(name=name).order_by("-date").latest("created_at")
 
-    if not next_latest:
-        return LatestPerformanceResponse(**latest.__dict__.pop("date"))
-
-    return LatestPerformanceResponse(**difference(old=next_latest, new=latest).model_dump())
+    try:
+        next_latest = (
+            Stat.objects.filter(name=name, date__lt=latest.date)
+            .order_by("-date")
+            .latest("created_at")
+        )
+        return LatestPerformanceResponse(**difference(old=next_latest, new=latest).model_dump())
+    except Stat.DoesNotExist:
+        data = latest.__dict__
+        data.pop("date")
+        return LatestPerformanceResponse(**data)
