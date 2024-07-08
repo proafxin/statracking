@@ -1,13 +1,19 @@
+from django.db import IntegrityError
+from ninja.errors import ValidationError
+
 from backend.models.games import Game
 from backend.responses.games import GameRequest
 
 
 def create_new(game_request: GameRequest) -> Game:
     game = Game(**game_request.model_dump())
-    game.save()
-    game.refresh_from_db()
+    try:
+        game.save()
+        game.refresh_from_db()
 
-    return game
+        return game
+    except IntegrityError:
+        raise ValidationError(errors=[{"error": f"{game_request.name} already exists."}])
 
 
 def get_by_id(id: int) -> Game | None:
