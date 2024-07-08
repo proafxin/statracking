@@ -11,6 +11,8 @@ from backend.responses.games import GameResponse
 from backend.responses.record import RecordRequest, RecordResponse
 from backend.responses.stats import LatestPerformanceResponse, StatRequest
 from backend.services.games import get_by_name
+from backend.services.images import create as create_image_path
+from backend.services.images import is_duplicate
 from backend.services.records import create_new as create_new_record
 from image_retrieval.parse import parse_image
 from image_retrieval.pubg.calculate import get_stats_from_parsed_labels, parse_labels
@@ -113,6 +115,10 @@ def get_pubg_stats_from_image(image_path: str, match_date: datetime) -> list[Rec
     if not game_obj:
         raise ValidationError(errors=[{"error": "PUBG is not a valid game. Create it first."}])
 
+    duplicate = is_duplicate(image_path=image_path)
+    if duplicate:
+        print(ValidationError(errors=[{"error": f"{image_path} already parsed."}]))
+
     bounding_boxes = parse_image(image_path=image_path, reader=Reader(lang_list=["en"]))
     parsed_labels, victory = parse_labels(bounding_boxes=bounding_boxes)
     stats = get_stats_from_parsed_labels(parsed_labels=parsed_labels)
@@ -140,6 +146,8 @@ def get_pubg_stats_from_image(image_path: str, match_date: datetime) -> list[Rec
         else:
             new_request = update_request(old=old, current=stat_request)
             _ = create_new(stat_request=new_request)
+    if not duplicate:
+        _ = create_image_path(image_path=image_path)
 
     return response
 
@@ -193,6 +201,7 @@ def get_stats_from_dir(image_dir: str, match_date: datetime) -> list[str]:
     parsed_images: list[str] = []
     for image_path in image_paths:
         _ = get_pubg_stats_from_image(image_path=image_path, match_date=match_date)
+
         parsed_images.append(image_path)
 
     return parsed_images
