@@ -20,6 +20,14 @@ backend.models.games module
    :undoc-members:
    :show-inheritance:
 
+backend.models.images module
+----------------------------
+
+.. automodule:: backend.models.images
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 backend.models.records module
 -----------------------------
 
