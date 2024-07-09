@@ -103,7 +103,10 @@ def update_request(old: Stat, current: StatRequest) -> StatRequest:
 
 
 def create_new(stat_request: StatRequest) -> Stat:
-    stat = Stat(**stat_request.model_dump())
+    data = stat_request.model_dump()
+    data.pop("kda")
+    data.pop("average")
+    stat = Stat(**data)
     stat.save()
     stat.refresh_from_db()
 
@@ -152,6 +155,12 @@ def get_pubg_stats_from_image(image_path: str, match_date: datetime) -> list[Rec
     return response
 
 
+def performance_from_stat(stat: Stat) -> LatestPerformanceResponse:
+    data = stat.__dict__
+    data.pop("date")
+    return LatestPerformanceResponse(**data)
+
+
 def difference(old: Stat, new: Stat) -> LatestPerformanceResponse:
     result = LatestPerformanceResponse(
         name=new.name,
@@ -185,9 +194,29 @@ def get_latest_performance(name: str, game: str) -> LatestPerformanceResponse:
         )
         return LatestPerformanceResponse(**difference(old=next_latest, new=latest).model_dump())
     except Stat.DoesNotExist:
-        data = latest.__dict__
-        data.pop("date")
-        return LatestPerformanceResponse(**data)
+        return performance_from_stat(stat=latest)
+
+
+def get_performance_in_range(
+    name: str, game: str, start_date: datetime, end_date: datetime
+) -> LatestPerformanceResponse:
+    new = Stat.objects.filter(name=name, date__lte=end_date).order_by("created_at").last()
+
+    old = Stat.objects.filter(name=name, date__gte=start_date).order_by("created_at").first()
+
+    if not new:
+        raise ValidationError(
+            errors=[
+                {
+                    "error": f"{name}, {game}, does not have any record from {start_date} to {end_date}"
+                }
+            ]
+        )
+
+    if not old:
+        return performance_from_stat(stat=new)
+
+    return LatestPerformanceResponse(**difference(old=old, new=new).model_dump())
 
 
 def get_stats_from_dir(image_dir: str, match_date: datetime) -> list[str]:
