@@ -10,6 +10,7 @@ from backend.responses.record import RecordResponse
 from backend.responses.stats import LatestPerformanceResponse
 from backend.services.stats import (
     get_latest_performance,
+    get_performance_in_range,
     get_pubg_stats_from_image,
     get_stats_from_dir,
 )
@@ -39,3 +40,12 @@ def stats_from_image_dir(request: WSGIRequest, date: datetime, image_dir: str) -
 @router.post("/pubg/latest/individual", response=LatestPerformanceResponse)
 def latest_performance(request: WSGIRequest, name: str) -> LatestPerformanceResponse:
     return get_latest_performance(name=name, game="PUBG")
+
+
+@router.post("/pubg/range", response=LatestPerformanceResponse)
+def range_performance(
+    request: WSGIRequest, name: str, start_date: datetime, end_date: datetime
+) -> LatestPerformanceResponse:
+    return get_performance_in_range(
+        name=name, game="PUBG", start_date=start_date, end_date=end_date
+    )

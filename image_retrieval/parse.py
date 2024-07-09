@@ -1,5 +1,6 @@
 import os
 
+import cv2
 import numpy as np
 from easyocr import Reader
 
@@ -10,7 +11,10 @@ def parse_image(image_path: str, reader: Reader) -> list[BoundingBox]:
     if not os.path.exists(image_path):
         raise FileNotFoundError(f"{image_path} does not exist.")
 
-    result = reader.readtext(image=image_path)
+    image = cv2.imread(image_path)
+    image = cv2.cvtColor(image, cv2.COLOR_RGB2GRAY)
+
+    result = reader.readtext(image=image)
 
     bounding_boxes: list[BoundingBox] = []
 

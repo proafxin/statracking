@@ -39,6 +39,7 @@ async def test_parse() -> None:
     assert "Score" not in parsed_labels
 
     stats = get_stats_from_parsed_labels(parsed_labels=parsed_labels)
+    print(stats)
     assert isinstance(stats, list)
     for stat in stats:  # type: ignore[assignment]
         assert isinstance(stat, list)

@@ -12,6 +12,14 @@ backend.services.games module
    :undoc-members:
    :show-inheritance:
 
+backend.services.images module
+------------------------------
+
+.. automodule:: backend.services.images
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 backend.services.records module
 -------------------------------
 
