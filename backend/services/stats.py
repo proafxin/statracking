@@ -187,11 +187,7 @@ def get_latest_performance(name: str, game: str) -> LatestPerformanceResponse:
     latest = Stat.objects.filter(name=name).order_by("-date").latest("created_at")
 
     try:
-        next_latest = (
-            Stat.objects.filter(name=name, date__lt=latest.date)
-            .order_by("-date")
-            .latest("created_at")
-        )
+        next_latest = Stat.objects.filter(name=name, date__lt=latest.date).order_by("-date").latest("created_at")
         return LatestPerformanceResponse(**difference(old=next_latest, new=latest).model_dump())
     except Stat.DoesNotExist:
         return performance_from_stat(stat=latest)
@@ -206,11 +202,7 @@ def get_performance_in_range(
 
     if not new:
         raise ValidationError(
-            errors=[
-                {
-                    "error": f"{name}, {game}, does not have any record from {start_date} to {end_date}"
-                }
-            ]
+            errors=[{"error": f"{name}, {game}, does not have any record from {start_date} to {end_date}"}]
         )
 
     if not old:

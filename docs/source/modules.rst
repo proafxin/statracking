@@ -1,4 +1,4 @@
-statracking
+tdm-tracker
 ===========
 
 .. toctree::
