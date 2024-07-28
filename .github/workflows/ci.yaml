@@ -33,7 +33,7 @@ jobs:
       - name: Tox
         run: |
           curl -sSL https://install.python-poetry.org | python3 -
-          tox
+          tox -p
 
       # - if: ${{ matrix.python-version == 3.12 }}
       #   name: Upload coverage reports to Codecov
