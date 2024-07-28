@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "statracking"
-version = "1.6.1"
+version = "1.6.2"
 description = "Tracking stats from scoreboard screenshots"
 authors = ["Masum Billal <billalmasum93@gmail.com>"]
 license = "LICENSE"

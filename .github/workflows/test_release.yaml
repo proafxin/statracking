@@ -1,4 +1,4 @@
-name: Build, test with Tox and publish to Pypi
+name: Build and test with Tox
 
 permissions: read-all
 
