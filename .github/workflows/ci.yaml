@@ -5,14 +5,9 @@ permissions: read-all
 on:
   pull_request:
     branches: [develop]
-    paths-ignore:
-      - '**/**.md'
-      - '**/**.rst'
   push:
     branches: [develop]
-    paths-ignore:
-      - '**/**.md'
-      - '**/**.rst'
+
 env:
   DJANGO_NINJA_SECRET_KEY: ${{ secrets.DJANGO_NINJA_SECRET_KEY }}
 
@@ -40,10 +35,10 @@ jobs:
           curl -sSL https://install.python-poetry.org | python3 -
           tox
 
-      - if: ${{ matrix.python-version == 3.12 }}
-        name: Upload coverage reports to Codecov
-        uses: codecov/codecov-action@v4.0.1
-        with:
-          token: ${{ secrets.CODECOV_TOKEN }}
-          slug: proafxin/stat-tracking
-          verbose: true
+      # - if: ${{ matrix.python-version == 3.12 }}
+      #   name: Upload coverage reports to Codecov
+      #   uses: codecov/codecov-action@main
+      #   with:
+      #     token: ${{ secrets.CODECOV_TOKEN }}
+      #     slug: proafxin/tdm-tracker
+      #     verbose: true

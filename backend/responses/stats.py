@@ -20,7 +20,7 @@ class LatestPerformance(BaseRequest):
     valid_kill_match: int = 0
     valid_point_match: int = 0
 
-    @computed_field  # type: ignore[prop-decorator]
+    @computed_field  # type: ignore
     @property
     def kda(self) -> float:
         total = self.total_kill
@@ -28,7 +28,7 @@ class LatestPerformance(BaseRequest):
 
         return total / death
 
-    @computed_field  # type: ignore[prop-decorator]
+    @computed_field  # type: ignore
     @property
     def average(self) -> float:
         return self.total_kill / self.total_played

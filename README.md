@@ -1,6 +1,6 @@
 # PUBG TDM Tracker
 
-[![Build, test with Tox and publish to Pypi](https://github.com/proafxin/statracking/actions/workflows/test_release.yaml/badge.svg)](https://github.com/proafxin/statracking/actions/workflows/test_release.yaml)
+[![Build and test with Tox](https://github.com/proafxin/tdm-tracker/actions/workflows/ci.yaml/badge.svg)](https://github.com/proafxin/tdm-tracker/actions/workflows/ci.yaml)
 [![pre-commit.ci status](https://results.pre-commit.ci/badge/github/proafxin/statracking/develop.svg)](https://results.pre-commit.ci/latest/github/proafxin/statracking/develop)
 
 PUBG does not keep track of TDM stats. This tool lets you upload screenshots of the final scoreboards and the scores will be saved in a sqlite database.
