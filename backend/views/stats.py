@@ -19,9 +19,7 @@ router = Router()
 
 
 @router.post("/pubg", response=list[RecordResponse])
-def stats_from_image(
-    request: WSGIRequest, date: datetime, file: UploadedFile
-) -> list[RecordResponse]:
+def stats_from_image(request: WSGIRequest, date: datetime, file: UploadedFile) -> list[RecordResponse]:
     tmpfile = join(settings.MEDIA_ROOT, str(file.name))
     with open(file=tmpfile, mode="wb") as f:
         if not file.file:
@@ -46,6 +44,4 @@ def latest_performance(request: WSGIRequest, name: str) -> LatestPerformanceResp
 def range_performance(
     request: WSGIRequest, name: str, start_date: datetime, end_date: datetime
 ) -> LatestPerformanceResponse:
-    return get_performance_in_range(
-        name=name, game="PUBG", start_date=start_date, end_date=end_date
-    )
+    return get_performance_in_range(name=name, game="PUBG", start_date=start_date, end_date=end_date)

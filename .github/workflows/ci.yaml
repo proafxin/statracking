@@ -1,18 +1,13 @@
-name: Build, test with Tox and publish to Pypi
+name: Build and test with Tox
 
 permissions: read-all
 
 on:
   pull_request:
     branches: [develop]
-    paths-ignore:
-      - '**/**.md'
-      - '**/**.rst'
   push:
     branches: [develop]
-    paths-ignore:
-      - '**/**.md'
-      - '**/**.rst'
+
 env:
   DJANGO_NINJA_SECRET_KEY: ${{ secrets.DJANGO_NINJA_SECRET_KEY }}
 
@@ -38,12 +33,12 @@ jobs:
       - name: Tox
         run: |
           curl -sSL https://install.python-poetry.org | python3 -
-          tox
+          tox -p
 
       - if: ${{ matrix.python-version == 3.12 }}
         name: Upload coverage reports to Codecov
-        uses: codecov/codecov-action@v4.0.1
+        uses: codecov/codecov-action@main
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
-          slug: proafxin/stat-tracking
+          slug: proafxin/tdm-tracker
           verbose: true
