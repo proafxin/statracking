@@ -7,7 +7,7 @@ services:
       dockerfile: Dockerfile
     runtime: nvidia
     environment:
-      - DJANGO_NINJA_SECRET_KEY=${DJANGO_NINJA_SECRET_KEY}
+      - DJANGO_NINJA_SECRET_KEY=$$DJANGO_NINJA_SECRET_KEY
     ports:
       - 8000:8000
     expose:
