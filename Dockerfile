@@ -12,4 +12,4 @@ WORKDIR /app
 COPY . .
 RUN poetry config virtualenvs.in-project true && poetry install
 
-CMD poetry run gunicorn statracking.asgi:application -k uvicorn.workers.UvicornWorker -w 4
+CMD poetry run python manage.py makemigrations && poetry run python manage.py migrate && poetry run gunicorn statracking.asgi:application -k uvicorn.workers.UvicornWorker -w 4
